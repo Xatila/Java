@@ -1,0 +1,51 @@
+package spring_data_exercises.entities;
+
+import javax.persistence.*;
+import java.util.Set;
+
+@Entity(name = "authors")
+public class Author {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    private String first_name;
+
+    @Column(nullable = false)
+    private String last_name;
+
+    @OneToMany(targetEntity = Book.class, mappedBy = "author")
+    private Set<Book> books;
+
+    public Author(){}
+
+    public Author(String first_name, String last_name) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getFirst_name() {
+        return first_name;
+    }
+
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
+    }
+
+    public String getLast_name() {
+        return last_name;
+    }
+
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
+    }
+}
